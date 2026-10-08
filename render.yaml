@@ -1,0 +1,15 @@
+# Render Blueprint — optional. Dashboard → New → Blueprint → pick this repo.
+services:
+  - type: web
+    name: doodle-dash-backend
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install --include=dev && npm run build   # devDependencies (typescript) are needed to compile
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: CLIENT_ORIGIN          # set in the dashboard, e.g. https://your-app.vercel.app,https://*.vercel.app
+        sync: false
