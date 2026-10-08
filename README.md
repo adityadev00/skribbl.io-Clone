@@ -167,8 +167,8 @@ Open the Vercel URL in two browsers/tabs → create room → join via the invite
 
 ## Known limitations
 
-In-memory state (single instance, no persistence), no accounts, `list_rooms` exists in the backend but has no browse UI, no public-room browse list (only “Join Random Room”), no kick/ban, bucket fill is tolerance-based (faint edge halos possible).
-
-```
-
-```
+- **In-Memory State:** Rooms live in server memory (single instance); restarting the backend drops active game lobbies.
+- **No Persistence/Auth:** No user accounts or persistent player stat tracking (identity is tab-based via `sessionStorage`).
+- **Public Lobby Browser:** Public room discovery is currently handled exclusively via **Join Random Room** (no room browser table in UI).
+- **Moderation:** No kick, ban, or vote-kick controls inside lobbies.
+- **Bucket Fill Tolerance:** Flood fill uses a tolerance threshold to handle canvas anti-aliasing (faint edge halos can occasionally appear near fast strokes).
