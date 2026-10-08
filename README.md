@@ -2,11 +2,11 @@
 
 Real-time multiplayer drawing & guessing game. One player draws a secret word, everyone else races to guess it; faster guesses score more, and the highest score after all rounds wins.
 
-> **Live demo:** `https://YOUR-APP.vercel.app` &nbsp;·&nbsp; **API health:** `https://YOUR-BACKEND.onrender.com/health`
-> *(replace both after deploying — see [Deploy](#deploy))*
+> **Live demo:** `https://skribbl-io-clone-ecru.vercel.app` &nbsp;·&nbsp; **API health:** `https://skribbl-io-backend.onrender.com/health`
 > Free-tier backend sleeps when idle: the first load can take ~30–60 s.
 
-Deep-dive on architecture, design decisions and likely viva questions: **[EXPLAIN.md](./EXPLAIN.md)**.
+> 📖 **Architecture Deep-Dive & Viva Guide:**  
+> For design decisions, concurrency handling, and likely viva defense questions, refer to **[EXPLAIN.md](./EXPLAIN.md)**.
 
 ## Features
 
