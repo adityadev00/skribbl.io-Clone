@@ -2,7 +2,7 @@
 
 Real-time multiplayer drawing & guessing game. One player draws a secret word, everyone else races to guess it; faster guesses score more, and the highest score after all rounds wins.
 
-> **Live demo:** `https://skribbl-io-clone-ecru.vercel.app` &nbsp;·&nbsp; **API health:** `https://skribbl-io-backend.onrender.com/health`
+>🌐 **[Live Demo](https://skribbl-io-clone-ecru.vercel.app)** &nbsp;·&nbsp; 🩺 **[API Health](https://skribbl-io-backend.onrender.com/health)**
 > Free-tier backend sleeps when idle: the first load can take ~30–60 s.
 
 > 📖 **Architecture Deep-Dive & Viva Guide:**  
