@@ -100,9 +100,10 @@ Order matters because each side needs the other's URL: **backend → frontend �
 
 1. Push the repo to GitHub.
 2. Render → **New + → Web Service** → pick the repo (or use **Blueprint** with the included `render.yaml`).
-3. Settings:
+3. Settings configure karein:
+
 | Field | Value |
-| --- | --- |
+|---|---|
 | Root Directory | `backend` |
 | Runtime | Node |
 | Build Command | `npm install --include=dev && npm run build` |
@@ -111,23 +112,22 @@ Order matters because each side needs the other's URL: **backend → frontend �
 | Instance type | Free |
 | Env vars | `NODE_VERSION=20`, `CLIENT_ORIGIN=http://localhost:5173` *(temporary)* |
 
+> `--include=dev` matters: Render sets `NODE_ENV=production`, which would otherwise skip `typescript` and the build would fail with `tsc: not found`. Port: nothing to configure — the server listens on `process.env.PORT`.
 
-`--include=dev` matters: Render sets `NODE_ENV=production`, which would otherwise skip `typescript` and the build would fail with `tsc: not found`.
-Port: nothing to configure — the server listens on `process.env.PORT`.
 4. Deploy, then open `https://<service>.onrender.com/health` → `{"status":"ok",…}`. Copy the URL.
 
 ### 2. Frontend on Vercel
 
 1. Vercel → **Add New → Project** → import the same repo.
-2. Settings:
+2. Settings configure karein:
+
 | Field | Value |
-| --- | --- |
+|---|---|
 | Root Directory | `frontend` |
 | Framework Preset | Vite (auto-detected) |
 | Build Command | `npm run build` |
 | Output Directory | `dist` |
 | Environment Variable | `VITE_SERVER_URL` = your Render URL |
-
 
 3. Deploy. `frontend/vercel.json` rewrites every path to `index.html`, so invite links like `/room/K7M2Q` work on refresh.
 
@@ -140,6 +140,12 @@ Render → your service → **Environment** → set
 ### 4. Smoke test
 
 Open the Vercel URL in two browsers/tabs → create room → join via the invite link → start → draw and guess. Put the live URL at the top of this README.
+
+### Hosting notes
+
+- **Why not Vercel/Netlify for the backend?** They run serverless functions that can't hold a long-lived WebSocket connection — the realtime server needs a persistent process, hence Render (or Railway/Fly).
+- **Free-tier cold starts:** Render free instances sleep after ~15 min idle. The app shows "Connecting… can take up to a minute". To keep a demo warm, ping `/health` every 5–10 min with a free uptime monitor.
+- **Single instance:** room state is in memory, so run exactly one backend instance. A restart/redeploy drops live rooms (players return to the home screen).
 
 ### Hosting notes
 
